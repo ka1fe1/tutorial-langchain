@@ -4,17 +4,13 @@
 
 聊天机器人的关键在于管理对话历史，在 langchain 中，可以通过 `RunnableWithMessageHistory` 来实现。
 
-`RunnableWithMessageHistory` 需要三个参数:
-- `chain`：要运行的链或可运行对象，它将处理输入并生成输出。
-- `get_session_history`：一个函数，接收 session_id 并返回 BaseChatMessageHistory 对象，用于存储和检索特定会话的消息历史。
-- `input_messages_key`：指定输入字典中包含消息的键名。这个参数告诉 RunnableWithMessageHistory 在哪里找到新的输入消息。
+RunnableWithMessageHistory 是 LangChain 中用于管理对话历史的关键类。它允许在多个会话中有效地管理对话历史，提供连贯和上下文相关的响应。以下是 RunnableWithMessageHistory 的主要参数及其作用：
 
-这三个参数的作用如下：
-1. `chain` 定义了如何处理输入并生成响应。
-2. `get_session_history` 允许为每个会话维护单独的对话历史，确保对话的连续性和上下文相关性。
-3. `input_messages_key` 使系统能够正确识别和处理新的输入消息，将其与历史消息结合。
-
-通过这种方式，`RunnableWithMessageHistory` 能够在多个会话中有效地管理对话历史，提供连贯和上下文相关的响应。
+1. `chain`: 要运行的链或可运行对象。这是处理输入并生成输出的核心组件。
+2. `get_session_history`: 函数，接收 session_id 并返回 BaseChatMessageHistory 对象。用于存储和检索特定会话的消息历史。
+3. `input_messages_key`: 字符串，指定输入字典中包含消息的键名。告诉 RunnableWithMessageHistory 在哪里找到新的输入消息。
+4. `history_messages_key`: 可选，字符串，指定输出字典中存储历史消息的键名。如果不指定，历史消息将直接添加到输入消息中。
+5. `output_messages_key`: 可选，字符串，指定输出字典中存储新生成消息的键名。如果不指定，新消息将直接添加到历史消息中。
 
 ## Managing Chat History
 
@@ -32,3 +28,9 @@ trim_messages 对象有以下参数及其作用:
 - `start_on`: 指定从哪种类型的消息开始保留。例如，"human" 表示从人类消息开始保留。
 
 这些参数允许灵活地控制如何修剪和管理对话历史，以确保保留最相关的信息，同时保持历史的简洁性和效率。
+
+## raw code
+
+```python
+https://raw.githubusercontent.com/ka1fe1/tutorial-lanchain/main/tutorial-app/2_chat_bot.py
+```
