@@ -31,6 +31,36 @@ prompt = ChatPromptTemplate.from_messages([
     MessagesPlaceholder(variable_name="messages"),
  ])
 
+# RunnableWithMessageHistory 参数及用法说明
+
+# 1. chain: 要运行的链或可运行对象
+# 这是处理输入并生成输出的核心组件
+
+# 2. get_session_history: 函数，接收 session_id 并返回 BaseChatMessageHistory 对象
+# 用于存储和检索特定会话的消息历史
+# 在本文件中，已经定义了 get_session_history 函数
+
+# 3. input_messages_key: 字符串，指定输入字典中包含消息的键名
+# 告诉 RunnableWithMessageHistory 在哪里找到新的输入消息
+
+# 4. history_messages_key: 可选，字符串，指定输出字典中存储历史消息的键名
+# 如果不指定，历史消息将直接添加到输入消息中
+
+# 5. output_messages_key: 可选，字符串，指定输出字典中存储新生成消息的键名
+# 如果不指定，新消息将直接添加到历史消息中
+
+# 示例用法：
+# with_message_history = RunnableWithMessageHistory(
+#     chain,
+#     get_session_history,
+#     input_messages_key="messages",
+#     history_messages_key="history",
+#     output_messages_key="output"
+# )
+
+# 这些参数允许灵活地控制消息的输入、历史管理和输出，
+# 以确保在多个会话中有效地管理对话历史，提供连贯和上下文相关的响应。
+
 
 def prompt_template(session_id: str):
     chain = prompt | model 
@@ -60,6 +90,34 @@ def prompt_template(session_id: str):
         )
         print(f"Human: {message}")
         print(f"AI: {response.content}\n")
+
+# trim_messages 的作用及其参数含义
+
+# trim_messages 用于管理和修剪对话历史，以保持对话的清晰度和相关性。
+# 它通过控制历史消息的长度和内容来优化对话上下文。
+
+# 参数解释：
+# 1. max_tokens: 设置消息历史的最大令牌数，控制历史长度。
+#    例如：max_tokens=1000 限制历史最多包含1000个令牌。
+
+# 2. strategy: 定义如何修剪消息。常用策略：
+#    - "last": 保留最近的消息，删除较早的消息。
+#    - "first": 保留最早的消息，删除较新的消息。
+
+# 3. token_counter: 用于计算消息中令牌数的函数或对象。
+#    通常使用语言模型来执行此操作。
+
+# 4. include_system: 布尔值，决定是否在修剪过程中包含系统消息。
+#    True 表示包含系统消息，False 则排除。
+
+# 5. allow_partial: 布尔值，决定是否允许部分消息被保留。
+#    False 时只保留完整的消息，True 允许保留部分消息。
+
+# 6. start_on: 指定从哪种类型的消息开始保留。
+#    例如，"human" 表示从人类消息开始保留。
+
+# 这些参数允许灵活地控制如何修剪和管理对话历史，
+# 确保保留最相关的信息，同时保持历史的简洁性和效率。
 
 def managing_conversation_history():
     trimmer = trim_messages(
