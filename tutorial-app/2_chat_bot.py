@@ -7,23 +7,25 @@ from langchain_core.chat_history import BaseChatMessageHistory, InMemoryChatMess
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from operator import itemgetter
 from langchain_core.runnables import RunnablePassthrough
+import yaml
 
 store = {}
-
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
         store[session_id] = InMemoryChatMessageHistory()
     return store[session_id]
 
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = "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"
+with open('./config.yaml', 'r') as file:
+    yml_config = yaml.safe_load(file)
 
-os.environ["OPENAI_API_KEY"] = "sk-glsafgZfTBhlzlWR95JNAkYSO6vdsTBE7Proh3tgM0WnLZuf"
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_API_KEY"] = yml_config["langchain"]["api_key"]
+os.environ["OPENAI_API_KEY"] = yml_config["open_ai"]["api_key"]
 
 model = ChatOpenAI(
     model_name="gpt-4o-mini", 
-    openai_api_base="https://api.chatanywhere.tech"
+    openai_api_base=yml_config["open_ai"]["api_base"]   
 )
 
 prompt = ChatPromptTemplate.from_messages([
