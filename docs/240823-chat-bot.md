@@ -12,6 +12,9 @@ RunnableWithMessageHistory 是 LangChain 中用于管理对话历史的关键类
 4. `history_messages_key`: 可选，字符串，指定输出字典中存储历史消息的键名。如果不指定，历史消息将直接添加到输入消息中。
 5. `output_messages_key`: 可选，字符串，指定输出字典中存储新生成消息的键名。如果不指定，新消息将直接添加到历史消息中。
 
+> 
+> code: [RunnableWithMessageHistory](https://github.com/ka1fe1/tutorial-langchain/blob/main/tutorial-app/2_chat_bot.py#L67)
+
 ## Managing Chat History
 
 管理对话历史的关键在于使用 trim_messages 来修剪消息历史，以保持对话的清晰和相关性。
@@ -29,8 +32,4 @@ trim_messages 对象有以下参数及其作用:
 
 这些参数允许灵活地控制如何修剪和管理对话历史，以确保保留最相关的信息，同时保持历史的简洁性和效率。
 
-## raw code
-
-```python
-https://raw.githubusercontent.com/ka1fe1/tutorial-lanchain/main/tutorial-app/2_chat_bot.py
-```
+> code: [ManagingConversationHistory](https://github.com/ka1fe1/tutorial-langchain/blob/main/tutorial-app/2_chat_bot.py#L124)
