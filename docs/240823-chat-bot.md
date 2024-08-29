@@ -1,4 +1,7 @@
 # 240823-聊天机器人
+- [240823-聊天机器人](#240823-聊天机器人)
+  - [Message History](#message-history)
+  - [Managing Chat History](#managing-chat-history)
 
 ## Message History
 

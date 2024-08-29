@@ -16,16 +16,20 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
         store[session_id] = InMemoryChatMessageHistory()
     return store[session_id]
 
-with open('./config.yaml', 'r') as file:
+# 获取当前文件所在目录路径，模拟 __DIR__
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# 构建相对路径
+config_file_path = os.path.join(current_dir, 'config.yaml')
+with open(config_file_path, 'r') as file:
     yml_config = yaml.safe_load(file)
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = yml_config["langchain"]["api_key"]
-os.environ["OPENAI_API_KEY"] = yml_config["open_ai"]["api_key"]
 
 model = ChatOpenAI(
     model_name="gpt-4o-mini", 
-    openai_api_base=yml_config["open_ai"]["api_base"]   
+    openai_api_base=yml_config["open_ai"]["api_base"],
+    openai_api_key=yml_config["open_ai"]["api_key"]
 )
 
 prompt = ChatPromptTemplate.from_messages([

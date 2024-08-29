@@ -4,18 +4,25 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+import utils
+
+# 获取当前文件所在目录路径，模拟 __DIR__
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# 构建相对路径
+config_file_path = os.path.join(current_dir, 'config.yaml')
+
+
+yml_config = utils.load_config(config_file_path)
 
 # 设置 langchain 环境变量
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = getpass.getpass()
-
-# 设置 openai 环境变量
-os.environ["OPENAI_API_KEY"] = getpass.getpass()
+os.environ["LANGCHAIN_API_KEY"] = yml_config["langchain"]["api_key"]
 
 
 model = ChatOpenAI(
     model_name="gpt-4o-mini", 
-    openai_api_base="https://api.chatanywhere.tech"
+    openai_api_base=yml_config["open_ai"]["api_base"],
+    openai_api_key=yml_config["open_ai"]["api_key"]
 )
 
 system_template = """
