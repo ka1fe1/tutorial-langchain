@@ -1,4 +1,4 @@
-# tutorial-lanchain
+# tutorial-langchain
 
 - [240823-chat-bot.md](./docs/240823-chat-bot.md)
 - [240829-vector-store-and-retrievers.md](./docs/240829-vector-store-and-retrievers.md)
