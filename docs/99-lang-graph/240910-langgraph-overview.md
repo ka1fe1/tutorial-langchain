@@ -26,7 +26,7 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph s1["初始化 LLM 和工具"]
+    subgraph s1["fa:fa-step-forward 初始化 LLM 和工具"]
         direction LR
         s101["
 # get llm 
@@ -40,14 +40,14 @@ model = llm_model.bind_tools(tools=tools)
         "]
     end
 
-    subgraph s2["初始化带状态的 graph"]
+    subgraph s2["fa:fa-step-forward 初始化带状态的 graph"]
         s201["
 # 创建一个工作流，用于处理对话
 workflow = StateGraph(MessagesState)
         "]
     end
 
-    subgraph s3["定义图的节点"]
+    subgraph s3["fa:fa-step-forward 定义图的节点"]
         s301["
 # 添加图的节点
 workflow.add_node('agent', call_model)
@@ -55,7 +55,7 @@ workflow.add_node('tools', tool_node)
         "]
     end
 
-    subgraph s4["定义图的入口点及边"]
+    subgraph s4["fa:fa-step-forward 定义图的入口点及边"]
         s401["
 # 添加图的边及条件边
 workflow.add_edge(START, 'agent')
@@ -64,7 +64,7 @@ workflow.add_edge('tools', 'agent')
         "]
     end
 
-    subgraph s5["编译图"]
+    subgraph s5["fa:fa-step-forward 编译图"]
         s501["
 # 创建一个检查点，用于保存对话状态
 checkpointer = MemorySaver()
@@ -74,7 +74,7 @@ app = workflow.compile(checkpointer=checkpointer)
         "]
     end
 
-    subgraph s6["执行图"]
+    subgraph s6["fa:fa-step-forward 执行图"]
         s601["
 config = {'configurable': {'thread_id': 111}}
 final_state = app.invoke(
@@ -87,8 +87,8 @@ print(final_state['messages'][-1].content)
     end
 
 
-    s0 --> s1 --> s2 --> s3 --> s4 --> s5 --> s6
+    s1 --> s2 --> s3 --> s4 --> s5 --> s6
 ```
 
-完整代码详见: [langgraph_example.py](https://github.com/ka1fe1/tutorial-langchain/tutorial-app/langgraph/0-overview/example.py)]
+完整代码详见: [langgraph_example.py](https://github.com/ka1fe1/tutorial-langchain/tree/main/tutorial-app/langgraph/0-overview/example.py)
 
