@@ -35,27 +35,25 @@ flowchart TB
     subgraph s1["fa:fa-step-forward 初始化 LLM 和工具"]
         direction LR
         s101["
-# get llm 
+#35; get llm
 llm_model = llm.LLM(yml_config).get_llm()
-
-# 定义一个工具列表，初始包含一个名为search的工具
+#35; 定义一个工具列表，初始包含一个名为search的工具
 tools = [search]
-
-# 绑定工具节点到LLM模型，使得模型可以调用工具节点中的工具
+#35; 绑定工具节点到LLM模型，使得模型可以调用工具节点中的工具
 model = llm_model.bind_tools(tools=tools)
         "]
     end
 
     subgraph s2["fa:fa-step-forward 初始化带状态的 graph"]
         s201["
-# 创建一个工作流，用于处理对话
+#35; 创建一个工作流，用于处理对话
 workflow = StateGraph(MessagesState)
         "]
     end
 
     subgraph s3["fa:fa-step-forward 定义图的节点"]
         s301["
-# 添加图的节点
+#35; 添加图的节点
 workflow.add_node('agent', call_model)
 workflow.add_node('tools', tool_node)        
         "]
@@ -63,7 +61,7 @@ workflow.add_node('tools', tool_node)
 
     subgraph s4["fa:fa-step-forward 定义图的入口点及边"]
         s401["
-# 添加图的边及条件边
+#35; 添加图的边及条件边
 workflow.add_edge(START, 'agent')
 workflow.add_conditional_edges('agent', should_continue)
 workflow.add_edge('tools', 'agent')        
@@ -72,10 +70,10 @@ workflow.add_edge('tools', 'agent')
 
     subgraph s5["fa:fa-step-forward 编译图"]
         s501["
-# 创建一个检查点，用于保存对话状态
+#35; 创建一个检查点，用于保存对话状态
 checkpointer = MemorySaver()
 
-#  编译工作流，生成一个可执行的应用程序
+#35;  编译工作流，生成一个可执行的应用程序
 app = workflow.compile(checkpointer=checkpointer)        
         "]
     end
