@@ -21,3 +21,74 @@ flowchart LR
     s0 --> s4
     s0 --> s5
 ```
+
+## how to build langgraph
+
+```mermaid
+flowchart TB
+    subgraph s1["初始化 LLM 和工具"]
+        direction LR
+        s101["
+# get llm 
+llm_model = llm.LLM(yml_config).get_llm()
+
+# 定义一个工具列表，初始包含一个名为search的工具
+tools = [search]
+
+# 绑定工具节点到LLM模型，使得模型可以调用工具节点中的工具
+model = llm_model.bind_tools(tools=tools)
+        "]
+    end
+
+    subgraph s2["初始化带状态的 graph"]
+        s201["
+# 创建一个工作流，用于处理对话
+workflow = StateGraph(MessagesState)
+        "]
+    end
+
+    subgraph s3["定义图的节点"]
+        s301["
+# 添加图的节点
+workflow.add_node('agent', call_model)
+workflow.add_node('tools', tool_node)        
+        "]
+    end
+
+    subgraph s4["定义图的入口点及边"]
+        s401["
+# 添加图的边及条件边
+workflow.add_edge(START, 'agent')
+workflow.add_conditional_edges('agent', should_continue)
+workflow.add_edge('tools', 'agent')        
+        "]
+    end
+
+    subgraph s5["编译图"]
+        s501["
+# 创建一个检查点，用于保存对话状态
+checkpointer = MemorySaver()
+
+#  编译工作流，生成一个可执行的应用程序
+app = workflow.compile(checkpointer=checkpointer)        
+        "]
+    end
+
+    subgraph s6["执行图"]
+        s601["
+config = {'configurable': {'thread_id': 111}}
+final_state = app.invoke(
+    {'messages': [HumanMessage(content='what's the weather like in san francisco?')]},
+    config=config,
+)
+
+print(final_state['messages'][-1].content)        
+        "]
+    end
+
+
+    s0 --> s1 --> s2 --> s3 --> s4 --> s5 --> s6
+```
+
+完整代码详见: [langgraph_example.py](https://github.com/ka1fe1/tutorial-langchain/tutorial-app/langgraph/0-overview/example.py)]
+

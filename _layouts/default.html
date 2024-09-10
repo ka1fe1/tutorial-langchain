@@ -15,8 +15,9 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   {% include head-custom.html %}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+  
+  <!-- 引入Font Awesome图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
 
 <body>
   <a id="skip-to-content" href="#content">Skip to the content.</a>
@@ -71,9 +72,16 @@
 </script>
 -->
 <script type="module">
+    // 导入mermaid库，用于生成图表和流程图
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/+esm';
+    
+    // 初始化mermaid，设置为不自动加载
     mermaid.initialize({ startOnLoad: false });
+    
+    // 使用mermaid运行指定的代码块
+    // 等待mermaid库运行完毕
     await mermaid.run({
+      // 选择含有类名'.language-mermaid'的元素作为图表描述代码
       querySelector: '.language-mermaid',
     });
 </script>
