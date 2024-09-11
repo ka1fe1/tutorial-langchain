@@ -1,4 +1,4 @@
-# tutorial-langchain
+# tutorial-langchain & langgraph
 
 ## langchain
 
