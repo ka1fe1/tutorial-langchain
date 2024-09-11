@@ -15,13 +15,33 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   {% include head-custom.html %}
 
-  <link ref="stylesheet" href="./go-to-top.css">
-
   
   <!-- 引入Font Awesome图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
-
-<body>
+  <style>
+    .goTop {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        /* 圖示水平移動位置 */
+        transform: translateX(0);
+        transition: transform 0.2s;
+        /* 圖示隱藏 */
+        &.hide {
+          transform: translateX(120%);
+        } 
+        .goTopBtn {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          .fa-arrow-alt-circle-up {
+            color: #3d82ad;
+          }
+        }
+    }
+  </style>
+  <body>
   <a id="skip-to-content" href="#content">Skip to the content.</a>
 
   <header class="page-header" role="banner">
