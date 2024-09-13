@@ -12,4 +12,5 @@
 ## langgraph
 
 - [240910-langgraph-overview.md](./docs/99-lang-graph/240910-langgraph-overview.md)
+- [240913-langgraph-quickstart.md](./docs/99-lang-graph/240913-langgraph-quickstart.md)
 
