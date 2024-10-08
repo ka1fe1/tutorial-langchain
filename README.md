@@ -9,6 +9,10 @@
 - [240903-conversation-rag.md](./docs/240903-conversation-rag.md)
 - [240904-rag-sql.md](./docs/240904-rag-sql.md)
 
+### langchain guides
+
+- [240930-return-structed-data-from-model.md](./docs/langchain-guides/240930-return-structed-data-from-model.md)
+
 ## langgraph
 
 - [240910-langgraph-overview.md](./docs/99-lang-graph/240910-langgraph-overview.md)
