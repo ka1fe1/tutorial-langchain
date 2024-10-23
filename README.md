@@ -13,7 +13,7 @@
 ### langchain guides
 
 - [240930-return-structed-data-from-model.md](./docs/langchain-guides/240930-return-structed-data-from-model.md)
-- [20241022-tool-guides.md](./docs/langchain-guides/20241022-tool-guides.md)
+- [241022-tool-guides.md](./docs/langchain-guides/241022-tool-guides.md)
 
 ## langgraph
 

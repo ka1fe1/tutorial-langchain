@@ -23,7 +23,8 @@
     - [how to return tool artifacts from a tool](#how-to-return-tool-artifacts-from-a-tool)
   - [how to pass secrets to runnables](#how-to-pass-secrets-to-runnables)
 
-> Ref: [https://python.langchain.com/docs/how_to/#tools](https://python.langchain.com/docs/how_to/#tools)
+
+> **Ref:** [https://python.langchain.com/docs/how_to/#tools](https://python.langchain.com/docs/how_to/#tools)
 
 ## how to create tool
 
