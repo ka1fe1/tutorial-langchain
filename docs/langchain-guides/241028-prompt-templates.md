@@ -6,12 +6,12 @@
       - [string promptTemplates](#string-prompttemplates)
       - [chatPromptTemplates](#chatprompttemplates)
       - [messagePlaceholder](#messageplaceholder)
-  - [how to use few shot examples - `FewShotPromptTemplate`](#how-to-use-few-shot-examples---fewshotprompttemplate)
+  - [how to use few shot examples-`FewShotPromptTemplate`](#how-to-use-few-shot-examples-fewshotprompttemplate)
     - [why need fee shot examples](#why-need-fee-shot-examples)
     - [how to use fee shot examples](#how-to-use-fee-shot-examples)
       - [use a set of examples](#use-a-set-of-examples)
       - [use an example selector](#use-an-example-selector)
-  - [how to use few shot example to chat model - `FewShotChatMessagePromptTemplates`](#how-to-use-few-shot-example-to-chat-model---fewshotchatmessageprompttemplates)
+  - [how to use few shot example to chat model -`FewShotChatMessagePromptTemplates`](#how-to-use-few-shot-example-to-chat-model--fewshotchatmessageprompttemplates)
     - [use fixed examples](#use-fixed-examples)
     - [use example selector](#use-example-selector)
 
@@ -77,7 +77,7 @@ prompt_template = ChatPromptTemplate([
 ])
 ```
 
-## how to use few shot examples - `FewShotPromptTemplate`
+## how to use few shot examples-`FewShotPromptTemplate`
 
 使用 `FewShotPromptTemplate` 类
 
@@ -186,7 +186,7 @@ print(
 )
 ```
 
-## how to use few shot example to chat model - `FewShotChatMessagePromptTemplates`
+## how to use few shot example to chat model -`FewShotChatMessagePromptTemplates`
 
 使用 `FewShotChatMessagePromptTemplates` 类来实现给聊天机器人提供一些简单示例
 
